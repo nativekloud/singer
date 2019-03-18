@@ -1,0 +1,14 @@
+{:paths ["resources" "src"]
+ :deps {org.clojure/clojure {:mvn/version "RELEASE"}
+        cheshire {:mvn/version "5.8.1"}
+        github-nativekloud/gcs {:git/url "https://github.com/nativekloud/gcs.git"
+                                :sha "a639335a7f42f8e44f6e3aa440d7b00b653f5974"}}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {org.clojure/test.check {:mvn/version "RELEASE"}}}
+  :runner
+  {:extra-deps {com.cognitect/test-runner
+                {:git/url "https://github.com/cognitect-labs/test-runner"
+                 :sha "76568540e7f40268ad2b646110f237a60295fa3c"}}
+   :main-opts ["-m" "cognitect.test-runner"
+               "-d" "test"]}}}
