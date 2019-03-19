@@ -194,8 +194,11 @@
   )
 
 (defmethod read-file :gs [path]
-  (let [[bucket-name blob-name] (url->parts path)]
-    (decode (String. (gcs/get-blob-content bucket-name blob-name )))
+  (let [[bucket-name blob-name] (url->parts path)
+        blob-content (gcs/get-blob-content bucket-name blob-name)]
+    (if (nil? blob-content)
+      blob-content
+      (decode (String. blob-content )))
     )
   )
 
