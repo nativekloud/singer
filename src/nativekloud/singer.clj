@@ -213,6 +213,15 @@
     (gcs/put-blob-string bucket-name blob-name content-type (encode  data))
     ))
 
+(defmulti remove-file (fn [path](keyword (first (s/split path #":")))))
+
+(defmethod remove-file :default [path]
+  (delete-file path))
+
+(defmethod remove-file :gs [path]
+  (let [[bucket-name blob-name] (url->parts path)]
+    (gcs/delete-blob bucket-name blob-name)))
+
 (defn load-config
   "Reads config file and returns config map."
   [args]
