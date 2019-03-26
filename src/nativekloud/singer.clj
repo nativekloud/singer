@@ -2,6 +2,7 @@
   (:require [cheshire.core :as json]
             [clojure.java.io :refer [writer]]
             [clojure.string :as s]
+            [clojure.java.io :refer [delete-file]]
             [gcs.core :as gcs]))
 
 ;;; Encoding
